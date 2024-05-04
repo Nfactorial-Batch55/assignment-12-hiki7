@@ -125,7 +125,7 @@ Example:
 intersection([{1, 2, 3}, {2, 3, 4}, {3, 4, 5}]) -> {3}
 """
 def intersection(sets: List[Set[Any]]) -> Set[Any]:
-    pass
+    return {value for value in sets[0] if all(value in set_ for set_ in sets)}
 
 """
 Exercise-13: Generator Expression to Yield Factorials
