@@ -195,7 +195,12 @@ Example:
 group_by_length(['hello', 'world', 'python', 'is', 'fun']) -> {5: ['hello', 'world'], 6: ['python'], 2: ['is'], 3: ['fun']}
 """
 def group_by_length(words: List[str]) -> Dict[int, List[str]]:
-    pass
+    grouped_dict = {}
+    for word in words:
+        grouped_dict[len(word)] = []
+    for word in words:
+        grouped_dict[len(word)].append(word)
+    return {length: group for length, group in grouped_dict.items()}
 
 """
 Exercise-18: Set Comprehension to Find Common Elements
