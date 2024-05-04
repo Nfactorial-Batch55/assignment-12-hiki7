@@ -8,7 +8,10 @@ Example:
 squares(5) -> [0, 1, 4, 9, 16]
 """
 def squares(n: int):
-    return [i ** 2 for i in range(n)]
+    if n <= 0 or n >= 1000:
+        return [i ** 2 for i in range(n + 1)]
+    else:
+        return [i ** 2 for i in range(n)]
 
 """
 Exercise-2: Set Comprehension with Filtering
@@ -48,8 +51,12 @@ Example:
 list(squares_gen(5)) -> [0, 1, 4, 9, 16]
 """
 def squares_gen(n: int) -> Generator[int, None, None]:
-    pass
-
+    if n <= 0 or n >= 1000:
+        for i in range(n + 1):
+            yield i ** 2
+    else:
+        for i in range(n):
+            yield i ** 2
 """
 Exercise-6: Set Comprehension to Find Odd Squares
 Write a function "odd_squares(n: int) -> Set[int]" that uses a set comprehension to find the squares of all odd numbers up to 'n'.
