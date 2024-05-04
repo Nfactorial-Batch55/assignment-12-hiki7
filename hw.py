@@ -206,4 +206,4 @@ Example:
 list_to_dict(['a', 'b', 'c']) -> {0: 'a', 1: 'b', 2: 'c'}
 """
 def list_to_dict(lst: List[Any]) -> Dict[int, Any]:
-    pass
+    return {lst.index(val): val for val in lst}
