@@ -75,7 +75,7 @@ Example:
 index_map("hello") -> {'h': 0, 'e': 1, 'l': 3, 'o': 4}
 """
 def index_map(text: str) -> dict[str, int]:
-    pass
+    return {char: i for i, char in enumerate(text)}
 
 """
 Exercise-8: Nested Set Comprehension
@@ -95,7 +95,10 @@ Example:
 list(fibonacci_gen(10)) -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 """
 def fibonacci_gen(n: int) -> Generator[int, None, None]:
-    pass
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 
 """
 Exercise-10: Dictionary Comprehension to Invert a Dictionary
@@ -114,8 +117,23 @@ Write a function "primes(n: int) -> List[int]" that uses a list comprehension to
 Example:
 primes(10) -> [2, 3, 5, 7]
 """
+
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
+
 def primes(n: int) -> List[int]:
-    pass
+    return [val for val in range(1, n + 1) if is_prime(val)]
 
 """
 Exercise-12: Set Comprehension to Intersect Sets
@@ -196,7 +214,7 @@ Example:
 list(primes_gen(10)) -> [2, 3, 5, 7]
 """
 
-def is_prime(num):
+def is_prime(num: int) -> bool:
     if num <= 1:
         return False
     if num <= 3:
