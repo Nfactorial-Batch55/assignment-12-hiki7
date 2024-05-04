@@ -1,4 +1,5 @@
 from typing import List, Any, Dict, Set, Generator
+import math
 
 """
 Exercise-1: List Comprehension to Squares
@@ -153,7 +154,7 @@ Example:
 list(factorials_gen(5)) -> [1, 2, 6, 24, 120]
 """
 def factorials_gen(n: int) -> Generator[int, None, None]:
-    pass
+    return (math.factorial(val) for val in range(n))
 
 """
 Exercise-14: Dictionary Comprehension to Map Strings to Lengths
