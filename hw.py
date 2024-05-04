@@ -85,7 +85,7 @@ Example:
 unique_values([[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> {1, 2, 3, 4, 5}
 """
 def unique_values(nested_list: List[List[Any]]) -> Set[Any]:
-    pass
+    return {value for inner_list in nested_list for value in inner_list}
 
 """
 Exercise-9: Fibonacci Sequence with Generators
