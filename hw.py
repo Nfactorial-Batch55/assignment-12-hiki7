@@ -195,8 +195,23 @@ Write a function "primes_gen(n: int) -> Generator[int]" that uses a generator ex
 Example:
 list(primes_gen(10)) -> [2, 3, 5, 7]
 """
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0:
+            return False
+        i += 2
+    return True
+
 def primes_gen(n: int) -> Generator[int, None, None]:
-    pass
+    return (x for x in range(2, n + 1) if is_prime(x))
 
 """
 Exercise-20: Dictionary Comprehension to Convert List to Dict
