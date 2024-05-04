@@ -65,7 +65,7 @@ Example:
 odd_squares(10) -> {1, 9, 25, 49, 81}
 """
 def odd_squares(n: int) -> set[int]:
-    pass
+    return {i ** 2 for i in range(n + 1) if i % 2 != 0}
 
 """
 Exercise-7: Dictionary Comprehension to Map Indices
