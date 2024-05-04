@@ -205,7 +205,7 @@ Example:
 common_elements([[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> {3}
 """
 def common_elements(lists: List[List[Any]]) -> Set[Any]:
-    pass
+    return {value for value in lists[0] if all(value in nested_lst for nested_lst in lists)}
 
 """
 Exercise-19: Generator Expression to Yield Primes
