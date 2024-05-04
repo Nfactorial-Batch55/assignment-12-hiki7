@@ -174,7 +174,7 @@ Example:
 transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 """
 def transpose(matrix: List[List[Any]]) -> List[List[Any]]:
-    pass
+    return [[nested_lst[i] for nested_lst in matrix] for i in range(len(matrix[0]))]
 
 """
 Exercise-16: Generator to Yield Reversed List
