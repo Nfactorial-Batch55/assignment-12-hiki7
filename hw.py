@@ -18,7 +18,7 @@ Example:
 unique_squares([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]) -> {1, 4, 9, 16}
 """
 def unique_squares(numbers: List[int]) -> Set[int]:
-    pass
+    return {i ** 2 for i in numbers}
 
 """
 Exercise-3: Dictionary Comprehension to Count Characters
