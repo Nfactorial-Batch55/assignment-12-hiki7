@@ -105,7 +105,7 @@ Example:
 invert_dict({'a': 1, 'b': 2, 'c': 3}) -> {1: 'a', 2: 'b', 3: 'c'}
 """
 def invert_dict(d: Dict[Any, Any]) -> Dict[Any, Any]:
-    pass
+    return {value: key for key, value in d.items()}
 
 """
 Exercise-11: Prime Numbers with List Comprehension
