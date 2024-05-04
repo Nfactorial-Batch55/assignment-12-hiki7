@@ -28,7 +28,7 @@ Example:
 char_counts("hello") -> {'h': 1, 'e': 1, 'l': 2, 'o': 1}
 """
 def char_counts(text: str) -> Dict[str, int]:
-    pass
+    return {char: text.count(char) for char in text}
 
 """
 Exercise-4: Nested List Comprehension
