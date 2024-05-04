@@ -165,7 +165,8 @@ Example:
 list(reverse_gen([1, 2, 3, 4, 5])) -> [5, 4, 3, 2, 1]
 """
 def reverse_gen(lst: List[Any]) -> Generator[Any, None, None]:
-    pass
+    for value in reversed(lst):
+        yield value
 
 """
 Exercise-17: Dictionary Comprehension to Group By Length
