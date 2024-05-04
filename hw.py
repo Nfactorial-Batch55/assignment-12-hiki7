@@ -145,7 +145,7 @@ Example:
 str_lengths(['hello', 'world', 'python']) -> {'hello': 5, 'world': 5, 'python': 6}
 """
 def str_lengths(strings: List[str]) -> Dict[str, int]:
-    pass
+    return {word: len(word) for word in strings}
 
 """
 Exercise-15: Nested List Comprehension to Transpose Matrix
