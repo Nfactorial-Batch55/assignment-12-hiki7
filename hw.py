@@ -38,7 +38,7 @@ Example:
 flatten([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [1, 2, 3, 4, 5, 6, 7, 8, 9]
 """
 def flatten(nested_list: List[List[Any]]) -> List[Any]:
-    pass
+    return [value for inner_list in nested_list for value in inner_list]
 
 """
 Exercise-5: Generator Expression to Yield Squares
