@@ -8,7 +8,7 @@ Example:
 squares(5) -> [0, 1, 4, 9, 16]
 """
 def squares(n: int):
-    pass
+    return [i ** 2 for i in range(n)]
 
 """
 Exercise-2: Set Comprehension with Filtering
