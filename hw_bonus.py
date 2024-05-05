@@ -8,8 +8,20 @@ Use a list comprehension to generate the initial list of numbers, and another to
 Example:
 sieve_of_eratosthenes(30) -> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 """
+
+from math import isqrt
+
 def sieve_of_eratosthenes(n: int) -> List[int]:
-    pass
+    if n <= 2:
+        return []
+    is_prime = [True for _ in range(n)]
+    is_prime[0] = False
+    is_prime[1] = False
+    for i in range(2, isqrt(n)+1):
+        if is_prime[i]:
+            for x in range(i*i, n, i):
+                is_prime[x] = False
+    return [i for i in range(n) if is_prime[i]]
 
 """
 Exercise-2: List Comprehension with Nested Loop and Condition
@@ -32,7 +44,7 @@ Example:
 dict_table(3) -> {1: {1: 1, 2: 2, 3: 3}, 2: {1: 2, 2: 4, 3: 6}, 3: {1: 3, 2: 6, 3: 9}}
 """
 def dict_table(n: int) -> Dict[int, Dict[int, int]]:
-    return {i: {j: i * j for j in range(1, n+1)} for i in range(1, n + 1)}
+    return {i: {j: i * j for j in range(1, n + 1)} for i in range(1, n + 1)}
 
 """
 Exercise-4: Generator of Generators
