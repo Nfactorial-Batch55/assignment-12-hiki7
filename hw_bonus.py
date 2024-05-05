@@ -32,7 +32,7 @@ Example:
 dict_table(3) -> {1: {1: 1, 2: 2, 3: 3}, 2: {1: 2, 2: 4, 3: 6}, 3: {1: 3, 2: 6, 3: 9}}
 """
 def dict_table(n: int) -> Dict[int, Dict[int, int]]:
-    pass
+    return {i: {j: i * j for j in range(1, n+1)} for i in range(1, n + 1)}
 
 """
 Exercise-4: Generator of Generators
