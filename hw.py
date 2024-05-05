@@ -1,4 +1,5 @@
 from typing import List, Any, Dict, Set, Generator
+import math
 
 """
 Exercise-1: List Comprehension to Squares
@@ -8,7 +9,10 @@ Example:
 squares(5) -> [0, 1, 4, 9, 16]
 """
 def squares(n: int):
-    pass
+    if n <= 0 or n >= 1000:
+        return [i ** 2 for i in range(n + 1)]
+    else:
+        return [i ** 2 for i in range(n)]
 
 """
 Exercise-2: Set Comprehension with Filtering
@@ -18,7 +22,7 @@ Example:
 unique_squares([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]) -> {1, 4, 9, 16}
 """
 def unique_squares(numbers: List[int]) -> Set[int]:
-    pass
+    return {i ** 2 for i in numbers}
 
 """
 Exercise-3: Dictionary Comprehension to Count Characters
@@ -28,7 +32,7 @@ Example:
 char_counts("hello") -> {'h': 1, 'e': 1, 'l': 2, 'o': 1}
 """
 def char_counts(text: str) -> Dict[str, int]:
-    pass
+    return {char: text.count(char) for char in text}
 
 """
 Exercise-4: Nested List Comprehension
@@ -38,7 +42,7 @@ Example:
 flatten([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [1, 2, 3, 4, 5, 6, 7, 8, 9]
 """
 def flatten(nested_list: List[List[Any]]) -> List[Any]:
-    pass
+    return [value for inner_list in nested_list for value in inner_list]
 
 """
 Exercise-5: Generator Expression to Yield Squares
@@ -48,8 +52,12 @@ Example:
 list(squares_gen(5)) -> [0, 1, 4, 9, 16]
 """
 def squares_gen(n: int) -> Generator[int, None, None]:
-    pass
-
+    if n <= 0 or n >= 1000:
+        for i in range(n + 1):
+            yield i ** 2
+    else:
+        for i in range(n):
+            yield i ** 2
 """
 Exercise-6: Set Comprehension to Find Odd Squares
 Write a function "odd_squares(n: int) -> Set[int]" that uses a set comprehension to find the squares of all odd numbers up to 'n'.
@@ -58,7 +66,7 @@ Example:
 odd_squares(10) -> {1, 9, 25, 49, 81}
 """
 def odd_squares(n: int) -> set[int]:
-    pass
+    return {i ** 2 for i in range(n + 1) if i % 2 != 0}
 
 """
 Exercise-7: Dictionary Comprehension to Map Indices
@@ -68,7 +76,7 @@ Example:
 index_map("hello") -> {'h': 0, 'e': 1, 'l': 3, 'o': 4}
 """
 def index_map(text: str) -> dict[str, int]:
-    pass
+    return {char: i for i, char in enumerate(text)}
 
 """
 Exercise-8: Nested Set Comprehension
@@ -78,7 +86,7 @@ Example:
 unique_values([[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> {1, 2, 3, 4, 5}
 """
 def unique_values(nested_list: List[List[Any]]) -> Set[Any]:
-    pass
+    return {value for inner_list in nested_list for value in inner_list}
 
 """
 Exercise-9: Fibonacci Sequence with Generators
@@ -88,7 +96,10 @@ Example:
 list(fibonacci_gen(10)) -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 """
 def fibonacci_gen(n: int) -> Generator[int, None, None]:
-    pass
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 
 """
 Exercise-10: Dictionary Comprehension to Invert a Dictionary
@@ -98,7 +109,7 @@ Example:
 invert_dict({'a': 1, 'b': 2, 'c': 3}) -> {1: 'a', 2: 'b', 3: 'c'}
 """
 def invert_dict(d: Dict[Any, Any]) -> Dict[Any, Any]:
-    pass
+    return {value: key for key, value in d.items()}
 
 """
 Exercise-11: Prime Numbers with List Comprehension
@@ -107,8 +118,23 @@ Write a function "primes(n: int) -> List[int]" that uses a list comprehension to
 Example:
 primes(10) -> [2, 3, 5, 7]
 """
+
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
+
 def primes(n: int) -> List[int]:
-    pass
+    return [val for val in range(1, n + 1) if is_prime(val)]
 
 """
 Exercise-12: Set Comprehension to Intersect Sets
@@ -118,7 +144,7 @@ Example:
 intersection([{1, 2, 3}, {2, 3, 4}, {3, 4, 5}]) -> {3}
 """
 def intersection(sets: List[Set[Any]]) -> Set[Any]:
-    pass
+    return {value for value in sets[0] if all(value in set_ for set_ in sets)}
 
 """
 Exercise-13: Generator Expression to Yield Factorials
@@ -128,7 +154,7 @@ Example:
 list(factorials_gen(5)) -> [1, 2, 6, 24, 120]
 """
 def factorials_gen(n: int) -> Generator[int, None, None]:
-    pass
+    return (math.factorial(val) for val in range(n))
 
 """
 Exercise-14: Dictionary Comprehension to Map Strings to Lengths
@@ -138,7 +164,7 @@ Example:
 str_lengths(['hello', 'world', 'python']) -> {'hello': 5, 'world': 5, 'python': 6}
 """
 def str_lengths(strings: List[str]) -> Dict[str, int]:
-    pass
+    return {word: len(word) for word in strings}
 
 """
 Exercise-15: Nested List Comprehension to Transpose Matrix
@@ -148,7 +174,7 @@ Example:
 transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 """
 def transpose(matrix: List[List[Any]]) -> List[List[Any]]:
-    pass
+    return [[nested_lst[i] for nested_lst in matrix] for i in range(len(matrix[0]))]
 
 """
 Exercise-16: Generator to Yield Reversed List
@@ -158,7 +184,8 @@ Example:
 list(reverse_gen([1, 2, 3, 4, 5])) -> [5, 4, 3, 2, 1]
 """
 def reverse_gen(lst: List[Any]) -> Generator[Any, None, None]:
-    pass
+    for value in reversed(lst):
+        yield value
 
 """
 Exercise-17: Dictionary Comprehension to Group By Length
@@ -168,7 +195,12 @@ Example:
 group_by_length(['hello', 'world', 'python', 'is', 'fun']) -> {5: ['hello', 'world'], 6: ['python'], 2: ['is'], 3: ['fun']}
 """
 def group_by_length(words: List[str]) -> Dict[int, List[str]]:
-    pass
+    grouped_dict = {}
+    for word in words:
+        grouped_dict[len(word)] = []
+    for word in words:
+        grouped_dict[len(word)].append(word)
+    return {length: group for length, group in grouped_dict.items()}
 
 """
 Exercise-18: Set Comprehension to Find Common Elements
@@ -178,7 +210,7 @@ Example:
 common_elements([[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> {3}
 """
 def common_elements(lists: List[List[Any]]) -> Set[Any]:
-    pass
+    return {value for value in lists[0] if all(value in nested_lst for nested_lst in lists)}
 
 """
 Exercise-19: Generator Expression to Yield Primes
@@ -187,8 +219,23 @@ Write a function "primes_gen(n: int) -> Generator[int]" that uses a generator ex
 Example:
 list(primes_gen(10)) -> [2, 3, 5, 7]
 """
+
+def is_prime(num: int) -> bool:
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0:
+            return False
+        i += 2
+    return True
+
 def primes_gen(n: int) -> Generator[int, None, None]:
-    pass
+    return (x for x in range(2, n + 1) if is_prime(x))
 
 """
 Exercise-20: Dictionary Comprehension to Convert List to Dict
@@ -198,4 +245,4 @@ Example:
 list_to_dict(['a', 'b', 'c']) -> {0: 'a', 1: 'b', 2: 'c'}
 """
 def list_to_dict(lst: List[Any]) -> Dict[int, Any]:
-    pass
+    return {lst.index(val): val for val in lst}

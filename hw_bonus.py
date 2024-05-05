@@ -8,8 +8,20 @@ Use a list comprehension to generate the initial list of numbers, and another to
 Example:
 sieve_of_eratosthenes(30) -> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 """
+
+from math import isqrt
+
 def sieve_of_eratosthenes(n: int) -> List[int]:
-    pass
+    if n <= 2:
+        return []
+    is_prime = [True for _ in range(n)]
+    is_prime[0] = False
+    is_prime[1] = False
+    for i in range(2, isqrt(n)+1):
+        if is_prime[i]:
+            for x in range(i*i, n, i):
+                is_prime[x] = False
+    return [i for i in range(n) if is_prime[i]]
 
 """
 Exercise-2: List Comprehension with Nested Loop and Condition
@@ -20,7 +32,8 @@ Example:
 triple_combinations([1, 2, 3, 4]) -> [(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
 """
 def triple_combinations(lst: List[int]) -> List[Tuple[int, int, int]]:
-    pass
+    n = len(lst)
+    return [(i, j, k) for i in lst for j in lst for k in lst if i < j < k]
 
 """
 Exercise-3: Nested Dictionary Comprehension
@@ -32,7 +45,7 @@ Example:
 dict_table(3) -> {1: {1: 1, 2: 2, 3: 3}, 2: {1: 2, 2: 4, 3: 6}, 3: {1: 3, 2: 6, 3: 9}}
 """
 def dict_table(n: int) -> Dict[int, Dict[int, int]]:
-    pass
+    return {i: {j: i * j for j in range(1, n + 1)} for i in range(1, n + 1)}
 
 """
 Exercise-4: Generator of Generators
@@ -43,7 +56,11 @@ Example:
 list(map(list, generators(3))) -> [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
 """
 def generators(n: int) -> Generator[Generator[int, None, None], None, None]:
-    pass
+    for _ in range(n):
+        def inner_generator():
+            for i in range(1, n+1):
+                yield i
+        yield inner_generator()
 
 """
 Exercise-5: Nested List Comprehension to Compute Cartesian Product
@@ -53,4 +70,4 @@ Example:
 cartesian_product([1, 2], ['a', 'b']) -> [(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]
 """
 def cartesian_product(set_a: List[Any], set_b: List[Any]) -> List[Tuple[Any, Any]]:
-    pass
+    return [(i, j) for i in set_a for j in set_b]
