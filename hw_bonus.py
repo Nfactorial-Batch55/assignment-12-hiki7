@@ -43,7 +43,11 @@ Example:
 list(map(list, generators(3))) -> [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
 """
 def generators(n: int) -> Generator[Generator[int, None, None], None, None]:
-    pass
+    for _ in range(n):
+        def inner_generator():
+            for i in range(1, n+1):
+                yield i
+        yield inner_generator()
 
 """
 Exercise-5: Nested List Comprehension to Compute Cartesian Product
